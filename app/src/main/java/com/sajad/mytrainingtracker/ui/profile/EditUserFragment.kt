@@ -1,12 +1,13 @@
 package com.sajad.mytrainingtracker.ui.profile
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajad.mytrainingtracker.MainActivity

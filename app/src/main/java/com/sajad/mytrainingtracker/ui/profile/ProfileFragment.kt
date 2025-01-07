@@ -1,15 +1,23 @@
 package com.sajad.mytrainingtracker.ui.profile
 
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sajad.mytrainingtracker.MainActivity
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.UserAdapter
+import com.sajad.mytrainingtracker.data.entities.User
 import com.sajad.mytrainingtracker.databinding.FragmentProfileBinding
 import com.sajad.mytrainingtracker.databinding.UserInfoBinding
 import com.sajad.mytrainingtracker.viewModel.UserViewModel
@@ -18,6 +26,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private var nestedBinding: UserInfoBinding? = null
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var userAdapter: UserAdapter

@@ -1,6 +1,7 @@
 package com.sajad.mytrainingtracker.repository
 
 import androidx.lifecycle.LiveData
+import com.sajad.mytrainingtracker.data.dao.UserDao
 import com.sajad.mytrainingtracker.data.database.AppDatabase
 import com.sajad.mytrainingtracker.data.entities.User
 
