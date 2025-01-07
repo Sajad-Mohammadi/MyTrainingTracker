@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajad.mytrainingtracker.MainActivity
@@ -36,7 +37,8 @@ class EditUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel = (activity as MainActivity).userViewModel
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+
         currentUser = args.user
         editView = view
 

@@ -24,6 +24,12 @@ interface UserDao {
     @Query("DELETE FROM user WHERE id = :id")
     suspend fun deleteById(id: Int)
 
+    @Query("Update user SET isLoggedIn = 0 WHERE id = :id")
+    suspend fun logout(id: Int)
+
+    @Query("Update user SET isLoggedIn = 1 WHERE id = :id")
+    suspend fun setLoggedIn(id: Int)
+
     @Query("SELECT * FROM user WHERE id = :id")
     fun getById(id: Int): LiveData<User>
 
@@ -33,3 +39,4 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE isLoggedIn = 1")
     fun getLoggedInUser(): LiveData<User>
 }
+

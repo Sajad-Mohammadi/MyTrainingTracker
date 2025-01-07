@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.sajad.mytrainingtracker.MainActivity
 import com.sajad.mytrainingtracker.R
@@ -40,7 +41,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel = (activity as MainActivity).userViewModel
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         registerView = view
 
         attachUiListeners()
@@ -67,7 +68,7 @@ class RegisterFragment : Fragment() {
         }
 
         userViewModel.registerUser(User(0,firstname, lastname, email, password,true,"en"))
-        Toast.makeText(requireContext(), "User registered successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(registerView.context, "User registered successfully", Toast.LENGTH_SHORT).show()
         registerView.findNavController().popBackStack(R.id.navigation_profile, false)
     }
 

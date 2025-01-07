@@ -117,7 +117,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnEdit" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

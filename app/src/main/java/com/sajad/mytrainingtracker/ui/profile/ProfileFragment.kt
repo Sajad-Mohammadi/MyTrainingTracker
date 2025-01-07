@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sajad.mytrainingtracker.MainActivity
@@ -18,7 +19,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private var nestedBinding: UserInfoBinding? = null
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var userAdapter: UserAdapter
@@ -40,7 +40,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel = (activity as MainActivity).userViewModel
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+
 
         initVars()
         attacheUiListeners()
@@ -67,7 +68,7 @@ class ProfileFragment : Fragment() {
             binding.btnRegister.visibility = View.GONE
 
             binding.profileRecyclerView.visibility = View.VISIBLE
-        }else {
+        } else {
             binding.tvLogin.visibility = View.VISIBLE
             binding.btnRegister.visibility = View.VISIBLE
 
@@ -76,10 +77,19 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        userAdapter = UserAdapter{ user ->
-            val action = ProfileFragmentDirections.actionNavigationProfileToEditUserFragment(user)
-            view?.findNavController()?.navigate(action)
-        }
+        userAdapter = UserAdapter(
+            onBtnEditClick = { user ->
+                val action =
+                    ProfileFragmentDirections.actionNavigationProfileToEditUserFragment(user)
+                view?.findNavController()?.navigate(action)
+            },
+            onBtnLogoutClick = { user ->
+                userViewModel.logout(user.id)
+            },
+            onBtnDeleteClick = { user ->
+                userViewModel.deleteById(user.id)
+            }
+        )
 
         binding.profileRecyclerView.apply {
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
@@ -100,8 +110,9 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
+
 }

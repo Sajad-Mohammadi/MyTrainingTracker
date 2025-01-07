@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sajad.mytrainingtracker.data.entities.User
 import com.sajad.mytrainingtracker.databinding.UserInfoBinding
 
-class UserAdapter(private val onBtnEditClick: (User) -> Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(
+    private val onBtnEditClick: (User) -> Unit,
+    private val onBtnLogoutClick: (User) -> Unit,
+    private val onBtnDeleteClick: (User) -> Unit
+) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     class UserViewHolder(val userBinding: UserInfoBinding) :
         RecyclerView.ViewHolder(userBinding.root) {}
 
@@ -46,6 +50,14 @@ class UserAdapter(private val onBtnEditClick: (User) -> Unit) : RecyclerView.Ada
 
         holder.userBinding.btnEdit.setOnClickListener {
             onBtnEditClick(currentUser)
+        }
+
+        holder.userBinding.btnLogout.setOnClickListener {
+            onBtnLogoutClick(currentUser)
+        }
+
+        holder.userBinding.btnDelete.setOnClickListener {
+            onBtnDeleteClick(currentUser)
         }
     }
 }

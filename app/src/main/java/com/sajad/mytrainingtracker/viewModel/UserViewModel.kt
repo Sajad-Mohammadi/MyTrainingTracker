@@ -13,12 +13,6 @@ class UserViewModel(app: Application, private val userRepository: UserRepository
         userRepository.register(user)
     }
 
-    fun loginUser(email: String, password: String) = userRepository.login(email, password)
-
-    fun getUserById(id: Int) = userRepository.getById(id)
-
-    fun getLoggedInUser() = userRepository.getLoggedInUser()
-
     fun updateUser(user: User) = viewModelScope.launch {
         userRepository.update(user)
     }
@@ -27,7 +21,21 @@ class UserViewModel(app: Application, private val userRepository: UserRepository
         userRepository.delete(user)
     }
 
-    fun deleteUserById(id: Int) = viewModelScope.launch {
+    fun deleteById(id: Int) = viewModelScope.launch {
         userRepository.deleteById(id)
     }
+
+    fun logout(id: Int) = viewModelScope.launch {
+        userRepository.logout(id)
+    }
+
+    fun setLoggedIn(id: Int) = viewModelScope.launch {
+        userRepository.setLoggedIn(id)
+    }
+
+    fun getById(id: Int) = userRepository.getById(id)
+
+    fun login(email: String, password: String) = userRepository.login(email, password)
+
+    fun getLoggedInUser() = userRepository.getLoggedInUser()
 }
