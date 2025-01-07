@@ -1,16 +1,15 @@
 package com.sajad.mytrainingtracker.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.sajad.mytrainingtracker.MainActivity
 import com.sajad.mytrainingtracker.R
-import com.sajad.mytrainingtracker.adapter.UserAdapter
 import com.sajad.mytrainingtracker.data.entities.User
 import com.sajad.mytrainingtracker.databinding.FragmentRegisterBinding
 import com.sajad.mytrainingtracker.viewModel.UserViewModel

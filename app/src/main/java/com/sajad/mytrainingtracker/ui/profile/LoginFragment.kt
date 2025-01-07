@@ -1,11 +1,10 @@
 package com.sajad.mytrainingtracker.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sajad.mytrainingtracker.R
+import androidx.fragment.app.Fragment
 import com.sajad.mytrainingtracker.databinding.FragmentLoginBinding
 
 
