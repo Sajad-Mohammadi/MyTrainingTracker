@@ -13,13 +13,13 @@ import com.sajad.mytrainingtracker.data.entities.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(appUser: User)
+    suspend fun insert(user: User)
 
     @Update
-    suspend fun update(appUser: User)
+    suspend fun update(user: User)
 
     @Delete
-    suspend fun delete(appUser: User)
+    suspend fun delete(user: User)
 
     @Query("DELETE FROM user WHERE id = :id")
     suspend fun deleteById(id: Int)

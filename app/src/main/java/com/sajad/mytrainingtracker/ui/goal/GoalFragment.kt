@@ -5,9 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.sajad.mytrainingtracker.R
+import com.sajad.mytrainingtracker.databinding.FragmentGoalBinding
+import com.sajad.mytrainingtracker.viewModel.UserViewModel
 
 class GoalFragment : Fragment() {
+
+    private lateinit var userViewModel: UserViewModel
+    private var _binding: FragmentGoalBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +26,24 @@ class GoalFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goal, container, false)
+        _binding = FragmentGoalBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+
+        userViewModel.getLoggedInUser().observe(viewLifecycleOwner) { user ->
+            user?.let {
+                binding.tvFirstName.text = it.firstname
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
