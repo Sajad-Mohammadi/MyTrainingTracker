@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.sajad.mytrainingtracker.MainActivity
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.UserAdapter
 import com.sajad.mytrainingtracker.databinding.FragmentProfileBinding
-import com.sajad.mytrainingtracker.databinding.UserInfoBinding
 import com.sajad.mytrainingtracker.viewModel.UserViewModel
 
 class ProfileFragment : Fragment() {
@@ -49,7 +47,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initVars() {
-        // Initialize variables here
     }
 
     private fun attacheUiListeners() {

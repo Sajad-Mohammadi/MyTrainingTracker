@@ -21,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/user_info" />
+            tools:listitem="@layout/item_user" />
 
         <Button
             android:id="@+id/btnRegister"

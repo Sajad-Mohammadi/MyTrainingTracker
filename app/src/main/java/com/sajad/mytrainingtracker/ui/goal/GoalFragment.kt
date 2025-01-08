@@ -12,9 +12,10 @@ import com.sajad.mytrainingtracker.viewModel.UserViewModel
 
 class GoalFragment : Fragment() {
 
-    private lateinit var userViewModel: UserViewModel
     private var _binding: FragmentGoalBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

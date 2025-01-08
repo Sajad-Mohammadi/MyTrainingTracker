@@ -19,4 +19,9 @@
     <string name="delete">Delete</string>
     <string name="logout">Logout</string>
     <string name="save">Save</string>
+    <string name="program_title">Program Title</string>
+    <string name="duration">Duration</string>
+    <string name="go_to_program">Go to program</string>
+    <string name="training_programs">Training programs</string>
+    <string name="add_program">Add Program</string>
 </resources>

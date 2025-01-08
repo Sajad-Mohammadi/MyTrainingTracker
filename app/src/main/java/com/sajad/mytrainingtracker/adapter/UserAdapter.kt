@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sajad.mytrainingtracker.data.entities.User
-import com.sajad.mytrainingtracker.databinding.UserInfoBinding
+import com.sajad.mytrainingtracker.databinding.ItemUserBinding
 
 class UserAdapter(
     private val onBtnEditClick: (User) -> Unit,
     private val onBtnLogoutClick: (User) -> Unit,
     private val onBtnDeleteClick: (User) -> Unit
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    class UserViewHolder(val userBinding: UserInfoBinding) :
+    class UserViewHolder(val userBinding: ItemUserBinding) :
         RecyclerView.ViewHolder(userBinding.root) {}
 
     private val differCallBack = object : DiffUtil.ItemCallback<User>() {
@@ -30,7 +30,7 @@ class UserAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
-            UserInfoBinding.inflate(
+            ItemUserBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
