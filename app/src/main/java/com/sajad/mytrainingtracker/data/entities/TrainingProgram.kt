@@ -23,5 +23,6 @@ data class TrainingProgram(
     val name: String,
     val description: String,
     val duration: Int,
+    val recent: Boolean,
     val userId: Int
 ): Parcelable

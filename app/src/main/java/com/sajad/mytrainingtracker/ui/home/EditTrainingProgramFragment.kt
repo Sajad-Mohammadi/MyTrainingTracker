@@ -95,12 +95,15 @@ class EditTrainingProgramFragment : Fragment() {
             return
         }
 
+        trainingProgramViewModel.updateRecent(currentTrainingProgram.id, userId)
+
         trainingProgramViewModel.updateTrainingProgram(
             TrainingProgram(
                 trainingProgramId,
                 programName,
                 programDescription,
                 duration,
+                recent = true,
                 userId
             )
         )

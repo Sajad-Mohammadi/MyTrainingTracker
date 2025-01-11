@@ -26,7 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var trainingProgramAdapter: TrainingProgramAdapter
 
     private lateinit var userViewModel: UserViewModel
-    private lateinit var userAdapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +101,8 @@ class HomeFragment : Fragment() {
                 trainingProgramViewModel.getTrainingProgramsByUserId(userId)
                     .observe(viewLifecycleOwner) { programs ->
                         if (programs.isNotEmpty()) {
-                            trainingProgramAdapter.differ.submitList(programs)
+                            val recentProgram = listOf(programs.first { it.recent })
+                            trainingProgramAdapter.differ.submitList(recentProgram)
                             updateUi(true)
                         } else {
                             trainingProgramAdapter.differ.submitList(emptyList())

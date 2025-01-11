@@ -21,6 +21,14 @@ class TrainingProgramViewModel(app: Application, private val trainingProgramRepo
         trainingProgramRepository.delete(trainingProgram)
     }
 
+    fun updateRecent(id: Int, userId: Int) = viewModelScope.launch {
+        trainingProgramRepository.updateRecent(id, userId)
+    }
+
+    fun setRecent(id: Int, userId: Int) = viewModelScope.launch {
+        trainingProgramRepository.setRecent(id, userId)
+    }
+
     fun getTrainingProgramById(id: Int) = trainingProgramRepository.getById(id)
 
     fun getTrainingProgramsByUserId(userId: Int) = trainingProgramRepository.getByUserId(userId)

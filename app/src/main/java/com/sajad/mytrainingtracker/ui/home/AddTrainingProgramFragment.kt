@@ -93,12 +93,14 @@ class AddTrainingProgramFragment : Fragment() {
             return
         }
 
+        trainingProgramViewModel.updateRecent(0, userId)
         trainingProgramViewModel.insertTrainingProgram(
             TrainingProgram(
                 0,
                 programName,
                 programDescription,
                 duration,
+                recent = true,
                 userId
             )
         )
