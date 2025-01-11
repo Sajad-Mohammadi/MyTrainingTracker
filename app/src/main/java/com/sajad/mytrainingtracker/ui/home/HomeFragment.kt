@@ -88,8 +88,10 @@ class HomeFragment : Fragment() {
                 view?.findNavController()?.navigate(action)
 
             },
-            onBtnGoToProgramClick = {
-                TODO()
+            onBtnGoToProgramClick = { trainingProgram ->
+                val action =
+                    HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(trainingProgram.id)
+                view?.findNavController()?.navigate(action)
             }
         )
 

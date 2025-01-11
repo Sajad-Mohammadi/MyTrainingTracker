@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.data.entities.TrainingProgram
 import com.sajad.mytrainingtracker.databinding.FragmentEditTrainingProgramBinding
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
@@ -68,19 +69,20 @@ class EditTrainingProgramFragment : Fragment() {
         val userId = currentTrainingProgram.userId
 
         if (programName.isEmpty()) {
-            binding.etTrainingProgramName.error = "Training program name is required"
+            binding.etTrainingProgramName.error =
+                getString(R.string.training_program_name_is_required)
             binding.etTrainingProgramName.requestFocus()
             return
         }
 
         if (programDescription.isEmpty()) {
-            binding.etDescription.error = "Description is required"
+            binding.etDescription.error = getString(R.string.description_is_required)
             binding.etDescription.requestFocus()
             return
         }
 
         if (programDuration.isEmpty()) {
-            binding.etDuration.error = "Duration is required"
+            binding.etDuration.error = getString(R.string.duration_is_required)
             binding.etDuration.requestFocus()
             return
         }
@@ -89,13 +91,13 @@ class EditTrainingProgramFragment : Fragment() {
         try {
             duration = programDuration.toInt()
         } catch (e: NumberFormatException) {
-            binding.etDuration.error = "Please enter a valid duration"
+            binding.etDuration.error = getString(R.string.please_enter_a_valid_duration)
             binding.etDuration.requestFocus()
             return
         }
 
         if (duration < 1 || duration > 7) {
-            binding.etDuration.error = "Duration must be between 1 and 7 days"
+            binding.etDuration.error = getString(R.string.duration_must_be_between_1_and_7_days)
             binding.etDuration.requestFocus()
             return
         }
@@ -113,7 +115,8 @@ class EditTrainingProgramFragment : Fragment() {
             )
         )
 
-        Toast.makeText(requireContext(), "Training program updated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.training_program_updated), Toast.LENGTH_SHORT).show()
         editView.findNavController().navigateUp()
     }
 

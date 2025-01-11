@@ -34,4 +34,16 @@
     <string name="new_program">New Program</string>
     <string name="no_goals_yet">No goals yet? Set one to begin your journey!</string>
     <string name="your_programs">Your Programs</string>
+    <string name="routine_title">Routine Title</string>
+    <string name="note">Note</string>
+    <string name="view_routine">View Routine</string>
+    <string name="start_fresh">Start Fresh</string>
+    <string name="training_program_name_is_required">Training program name is required</string>
+    <string name="description_is_required">Description is required</string>
+    <string name="duration_is_required">Duration is required</string>
+    <string name="please_enter_a_valid_duration">Please enter a valid duration</string>
+    <string name="duration_must_be_between_1_and_7_days">Duration must be between 1 and 7 days</string>
+    <string name="training_program_updated">Training program updated successfully</string>
+    <string name="routine_deleted">Routine deleted successfully</string>
+    <string name="name_is_required">Name is Required</string>
 </resources>

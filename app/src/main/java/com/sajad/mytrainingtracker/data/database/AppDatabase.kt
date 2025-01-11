@@ -4,16 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.sajad.mytrainingtracker.data.dao.RoutineDao
 import com.sajad.mytrainingtracker.data.dao.TrainingProgramDao
 import com.sajad.mytrainingtracker.data.dao.UserDao
+import com.sajad.mytrainingtracker.data.entities.Routine
 import com.sajad.mytrainingtracker.data.entities.TrainingProgram
 import com.sajad.mytrainingtracker.data.entities.User
 
-@Database(entities = [User::class, TrainingProgram::class], version = 1)
+@Database(entities = [User::class, TrainingProgram::class, Routine::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun userDao(): UserDao
     abstract fun trainingProgramDao(): TrainingProgramDao
+    abstract fun routineDao(): RoutineDao
 
     companion object {
         @Volatile

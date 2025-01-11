@@ -10,8 +10,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sajad.mytrainingtracker.data.database.AppDatabase
 import com.sajad.mytrainingtracker.databinding.ActivityMainBinding
+import com.sajad.mytrainingtracker.repository.RoutineRepository
 import com.sajad.mytrainingtracker.repository.TrainingProgramRepository
 import com.sajad.mytrainingtracker.repository.UserRepository
+import com.sajad.mytrainingtracker.viewModel.RoutineViewModel
+import com.sajad.mytrainingtracker.viewModel.RoutineViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.UserViewModel
@@ -37,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             trainingProgramViewModelFactory
         )[TrainingProgramViewModel::class.java]
 
+        val routineRepository = RoutineRepository(AppDatabase.getInstance(this))
+        val routineViewModelFactory = RoutineViewModelFactory(application, routineRepository)
+        val routineViewModel = ViewModelProvider(this, routineViewModelFactory)[RoutineViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

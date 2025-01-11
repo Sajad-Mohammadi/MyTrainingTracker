@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_edit_training_program"
             app:destination="@id/navigation_edit_training_program" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_routine"
+            app:destination="@id/navigation_routine" />
     </fragment>
     <fragment
         android:id="@+id/navigation_workout"
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/action_navigation_workout_to_navigation_edit_training_program"
             app:destination="@id/navigation_edit_training_program" />
+        <action
+            android:id="@+id/action_navigation_workout_to_routineFragment"
+            app:destination="@id/navigation_routine" />
     </fragment>
     <fragment
         android:id="@+id/navigation_goal"
@@ -102,6 +108,42 @@
         <argument
             android:name="trainingProgram"
             app:argType="com.sajad.mytrainingtracker.data.entities.TrainingProgram" />
+        <action
+            android:id="@+id/action_navigation_edit_training_program_to_navigation_routine"
+            app:destination="@id/navigation_routine" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_routine"
+        android:name="com.sajad.mytrainingtracker.ui.workout.RoutineFragment"
+        android:label="fragment_routine"
+        tools:layout="@layout/fragment_routine" >
+        <argument
+            android:name="trainingProgramId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_routine_to_navigation_add_routine"
+            app:destination="@id/navigation_add_routine" />
+        <action
+            android:id="@+id/action_navigation_routine_to_navigation_edit_routine"
+            app:destination="@id/navigation_edit_routine" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_routine"
+        android:name="com.sajad.mytrainingtracker.ui.workout.AddRoutineFragment"
+        android:label="AddRoutineFragment"
+        tools:layout="@layout/fragment_add_routine">
+        <argument
+            android:name="trainingProgramId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_edit_routine"
+        android:name="com.sajad.mytrainingtracker.ui.workout.EditRoutineFragment"
+        android:label="EditRoutineFragment"
+        tools:layout="@layout/fragment_edit_routine">
+        <argument
+            android:name="routine"
+            app:argType="com.sajad.mytrainingtracker.data.entities.Routine" />
     </fragment>
 
 </navigation>
