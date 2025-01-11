@@ -81,7 +81,10 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         trainingProgramAdapter = TrainingProgramAdapter(
             onBtnEditClick = { trainingProgram ->
-                val action = HomeFragmentDirections.actionNavigationHomeToNavigationEditTrainingProgram(trainingProgram)
+                val action =
+                    HomeFragmentDirections.actionNavigationHomeToNavigationEditTrainingProgram(
+                        trainingProgram
+                    )
                 view?.findNavController()?.navigate(action)
 
             },
@@ -100,14 +103,10 @@ class HomeFragment : Fragment() {
             if (userId != 0) {
                 trainingProgramViewModel.getTrainingProgramsByUserId(userId)
                     .observe(viewLifecycleOwner) { programs ->
-                        if (programs.isNotEmpty()) {
-                            val recentProgram = listOf(programs.first { it.recent })
-                            trainingProgramAdapter.differ.submitList(recentProgram)
-                            updateUi(true)
-                        } else {
-                            trainingProgramAdapter.differ.submitList(emptyList())
-                            updateUi(false)
-                        }
+                        val recentProgram =
+                            programs.firstOrNull { it.recent }?.let { listOf(it) } ?: emptyList()
+                        trainingProgramAdapter.differ.submitList(recentProgram)
+                        updateUi(recentProgram.isNotEmpty())
                     }
             } else {
                 trainingProgramAdapter.differ.submitList(emptyList())

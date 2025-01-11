@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_training_program"
-        android:name="com.sajad.mytrainingtracker.ui.home.AddTrainingProgramFragment"
+        android:name="com.sajad.mytrainingtracker.ui.workout.AddTrainingProgramFragment"
         android:label="AddTrainingProgramFragment"
         tools:layout="@layout/fragment_add_training_program">
         <action
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_edit_training_program"
-        android:name="com.sajad.mytrainingtracker.ui.home.EditTrainingProgramFragment"
+        android:name="com.sajad.mytrainingtracker.ui.workout.EditTrainingProgramFragment"
         android:label="fragment_edit_training_program"
         tools:layout="@layout/fragment_edit_training_program" >
         <argument

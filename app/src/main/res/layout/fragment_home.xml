@@ -13,14 +13,61 @@
         android:elevation="2dp">
 
         <TextView
+            android:id="@+id/tvGoals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goals_in_focus"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddGoal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/set_a_goal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGoals" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goalRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tvTrainingPrograms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddGoal"
+            tools:listitem="" />
+
+
+        <TextView
+            android:id="@+id/tvNoGoals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/no_goals_yet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddGoal" />
+
+        <TextView
             android:id="@+id/tvTrainingPrograms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/training_programs"
+            android:layout_marginTop="32dp"
+            android:text="@string/recent_program"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tvNoGoals" />
 
         <Button
             android:id="@+id/btnAddProgram"
@@ -29,11 +76,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/add_program"
-            app:layout_constraintEnd_toEndOf="@+id/programRecyclerView"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/programRecyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/tvTrainingPrograms" />
+            android:text="@string/new_program"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrainingPrograms"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/programRecyclerView"
@@ -41,10 +88,10 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_training_program" />
 
         <ImageView
@@ -53,10 +100,10 @@
             android:layout_height="0dp"
             android:src="@drawable/astronaut_program"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

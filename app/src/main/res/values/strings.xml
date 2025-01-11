@@ -26,4 +26,12 @@
     <string name="add_program">Add Program</string>
     <string name="description">Description</string>
     <string name="weekly_frequency">Weekly frequency</string>
+    <string name="recent_program">Recent Program</string>
+    <string name="goals_in_focus">Goals in Focus</string>
+    <string name="new_goal">New Goal</string>
+    <string name="create_program">Create Program</string>
+    <string name="set_a_goal">Set a Goal</string>
+    <string name="new_program">New Program</string>
+    <string name="no_goals_yet">No goals yet? Set one to begin your journey!</string>
+    <string name="your_programs">Your Programs</string>
 </resources>

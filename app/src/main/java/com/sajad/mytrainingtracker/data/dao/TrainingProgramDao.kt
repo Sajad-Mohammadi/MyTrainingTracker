@@ -21,6 +21,9 @@ interface TrainingProgramDao {
     @Delete
     suspend fun delete(trainingProgram: TrainingProgram)
 
+    @Query("DELETE FROM training_program WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
     @Query("Update training_program SET recent = 0 WHERE id != :id AND userId = :userId")
     suspend fun updateRecent(id: Int, userId: Int)
 
@@ -30,6 +33,6 @@ interface TrainingProgramDao {
     @Query("SELECT * FROM training_program WHERE id = :id")
     fun getById(id: Int): LiveData<TrainingProgram>
 
-    @Query("SELECT * FROM training_program WHERE userId = :userId")
+    @Query("SELECT * FROM training_program WHERE userId = :userId ORDER BY id DESC")
     fun getByUserId(userId: Int): LiveData<List<TrainingProgram>>
 }

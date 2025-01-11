@@ -109,7 +109,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/design_default_color_error"
+        android:backgroundTint="@android:color/holo_red_light"
         android:elevation="8dp"
         android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="@+id/btnEdit"

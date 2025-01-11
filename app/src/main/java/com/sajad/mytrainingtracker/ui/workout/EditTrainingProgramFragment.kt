@@ -1,64 +1,71 @@
-package com.sajad.mytrainingtracker.ui.home
+package com.sajad.mytrainingtracker.ui.workout
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Message
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.sajad.mytrainingtracker.R
+import androidx.navigation.fragment.navArgs
 import com.sajad.mytrainingtracker.data.entities.TrainingProgram
-import com.sajad.mytrainingtracker.data.entities.User
-import com.sajad.mytrainingtracker.databinding.FragmentAddTrainingProgramBinding
+import com.sajad.mytrainingtracker.databinding.FragmentEditTrainingProgramBinding
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
 
-class AddTrainingProgramFragment : Fragment() {
-    private var _binding: FragmentAddTrainingProgramBinding? = null
+class EditTrainingProgramFragment : Fragment() {
+    private var _binding: FragmentEditTrainingProgramBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var trainingProgramViewModel: TrainingProgramViewModel
-    private lateinit var addTrainingProgramView: View
+    private lateinit var editView: View
+    private lateinit var currentTrainingProgram: TrainingProgram
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
+    private val args: EditTrainingProgramFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddTrainingProgramBinding.inflate(inflater, container, false)
+        _binding = FragmentEditTrainingProgramBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        trainingProgramViewModel =
-            ViewModelProvider(requireActivity())[TrainingProgramViewModel::class.java]
-        addTrainingProgramView = view
+        trainingProgramViewModel = ViewModelProvider(requireActivity())[TrainingProgramViewModel::class.java]
 
-        val userId = arguments?.getInt("userId") ?: 0
-        attachUiListeners(userId)
+        currentTrainingProgram = args.trainingProgram
+        editView = view
+
+        attacheUiListeners()
     }
 
-    private fun attachUiListeners(userId: Int) {
+    @SuppressLint("SetTextI18n")
+    private fun attacheUiListeners() {
+        binding.etTrainingProgramName.setText(currentTrainingProgram.name)
+        binding.etDescription.setText(currentTrainingProgram.description)
+        binding.etDuration.setText(currentTrainingProgram.duration.toString())
+
         binding.btnSave.setOnClickListener {
-            saveTrainingProgram(userId)
+            updateTrainingProgram()
+        }
+
+        binding.btnDelete.setOnClickListener {
+            trainingProgramViewModel.deleteTrainingProgramById(currentTrainingProgram.id)
+            Toast.makeText(requireContext(), "Training program deleted successfully", Toast.LENGTH_SHORT).show()
+            editView.findNavController().navigateUp()
         }
     }
 
-    private fun saveTrainingProgram(userId: Int) {
-        val programName = binding.etTrainingProgramName.text.toString().trim()
-        val programDescription = binding.etDescription.text.toString().trim()
+    private fun updateTrainingProgram() {
+        val trainingProgramId = currentTrainingProgram.id
+        val programName = binding.etTrainingProgramName.text.toString()
+        val programDescription = binding.etDescription.text.toString()
         val programDuration = binding.etDuration.text.toString().trim()
+        val userId = currentTrainingProgram.userId
 
         if (programName.isEmpty()) {
             binding.etTrainingProgramName.error = "Training program name is required"
@@ -93,10 +100,11 @@ class AddTrainingProgramFragment : Fragment() {
             return
         }
 
-        trainingProgramViewModel.updateRecent(0, userId)
-        trainingProgramViewModel.insertTrainingProgram(
+        trainingProgramViewModel.updateRecent(currentTrainingProgram.id, userId)
+
+        trainingProgramViewModel.updateTrainingProgram(
             TrainingProgram(
-                0,
+                trainingProgramId,
                 programName,
                 programDescription,
                 duration,
@@ -104,9 +112,9 @@ class AddTrainingProgramFragment : Fragment() {
                 userId
             )
         )
-        Toast.makeText(addTrainingProgramView.context, "Training program saved successfully", Toast.LENGTH_SHORT).show()
-        addTrainingProgramView.findNavController().popBackStack()
-        addTrainingProgramView.findNavController().navigate(R.id.navigation_workout)
+
+        Toast.makeText(requireContext(), "Training program updated successfully", Toast.LENGTH_SHORT).show()
+        editView.findNavController().navigateUp()
     }
 
     override fun onDestroyView() {
