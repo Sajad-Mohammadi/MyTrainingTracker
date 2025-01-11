@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
             },
             onBtnGoToProgramClick = { trainingProgram ->
                 val action =
-                    HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(trainingProgram.id)
+                    HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(trainingProgram)
                 view?.findNavController()?.navigate(action)
             }
         )

@@ -87,7 +87,7 @@ class WorkoutFragment : Fragment() {
                 view?.findNavController()?.navigate(action)
             },
             onBtnGoToProgramClick = { trainingProgram ->
-                val action = WorkoutFragmentDirections.actionNavigationWorkoutToRoutineFragment(trainingProgram.id)
+                val action = WorkoutFragmentDirections.actionNavigationWorkoutToRoutineFragment(trainingProgram)
                 view?.findNavController()?.navigate(action)
             }
         )

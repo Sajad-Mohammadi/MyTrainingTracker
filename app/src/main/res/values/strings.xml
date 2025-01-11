@@ -21,6 +21,7 @@
     <string name="save">Save</string>
     <string name="program_title">Program Title</string>
     <string name="duration">Duration</string>
+    <string name="program_duration">%d days program</string>
     <string name="go_to_program">Go to program</string>
     <string name="training_programs">Training programs</string>
     <string name="add_program">Add Program</string>
@@ -46,4 +47,9 @@
     <string name="training_program_updated">Training program updated successfully</string>
     <string name="routine_deleted">Routine deleted successfully</string>
     <string name="name_is_required">Name is Required</string>
+    <string name="set">SET</string>
+    <string name="kg">KG</string>
+    <string name="reps">REPS</string>
+    <string name="underscore">_</string>
+    <string name="edit_routine">Edit Routine</string>
 </resources>

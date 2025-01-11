@@ -1,15 +1,18 @@
 package com.sajad.mytrainingtracker.ui.workout
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.RoutineAdapter
+import com.sajad.mytrainingtracker.data.entities.TrainingProgram
 import com.sajad.mytrainingtracker.databinding.FragmentRoutineBinding
 import com.sajad.mytrainingtracker.viewModel.RoutineViewModel
 
@@ -20,13 +23,13 @@ class RoutineFragment : Fragment() {
 
     private lateinit var routineViewModel: RoutineViewModel
     private lateinit var routineAdapter: RoutineAdapter
+    private lateinit var currentTrainingProgram: TrainingProgram
 
-    private var trainingProgramId: Int = 0
+    private val args: RoutineFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            trainingProgramId = it.getInt("trainingProgramId", 0)
         }
     }
 
@@ -42,6 +45,7 @@ class RoutineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         routineViewModel = ViewModelProvider(requireActivity())[RoutineViewModel::class.java]
+        currentTrainingProgram = args.trainingProgram
 
         attachUiListeners()
         setupRecyclerView()
@@ -50,7 +54,7 @@ class RoutineFragment : Fragment() {
     private fun attachUiListeners() {
         binding.btnStartFresh.setOnClickListener {
             val action =
-                RoutineFragmentDirections.actionNavigationRoutineToNavigationAddRoutine(trainingProgramId)
+                RoutineFragmentDirections.actionNavigationRoutineToNavigationAddRoutine(currentTrainingProgram.id)
             view?.findNavController()?.navigate(action)
         }
     }
@@ -59,6 +63,8 @@ class RoutineFragment : Fragment() {
         if (hasRoutines) {
             binding.pageImage.visibility = View.GONE
             binding.routineRecyclerView.visibility = View.VISIBLE
+
+            binding.tvRoutines.text = currentTrainingProgram.name
         } else {
             binding.pageImage.visibility = View.VISIBLE
             binding.routineRecyclerView.visibility = View.GONE
@@ -73,10 +79,9 @@ class RoutineFragment : Fragment() {
                 view?.findNavController()?.navigate(action)
             },
             onBtnViewRoutineClick = { routine ->
-                TODO()
-//                val action =
-//                    RoutineFragmentDirections.actionRoutineFragmentToViewRoutineFragment(routine)
-//                view?.findNavController()?.navigate(action)
+                val action =
+                    RoutineFragmentDirections.actionNavigationRoutineToNavigationExercise(routine)
+                view?.findNavController()?.navigate(action)
             }
         )
 
@@ -86,7 +91,7 @@ class RoutineFragment : Fragment() {
             adapter = routineAdapter
         }
 
-        routineViewModel.getRoutinesByTrainingProgramId(trainingProgramId)
+        routineViewModel.getRoutinesByTrainingProgramId(currentTrainingProgram.id)
             .observe(viewLifecycleOwner) { routines ->
                 if (routines.isNotEmpty()) {
                     routineAdapter.differ.submitList(routines)

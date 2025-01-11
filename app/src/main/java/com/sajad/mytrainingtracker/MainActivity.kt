@@ -10,9 +10,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sajad.mytrainingtracker.data.database.AppDatabase
 import com.sajad.mytrainingtracker.databinding.ActivityMainBinding
+import com.sajad.mytrainingtracker.repository.ExerciseRepository
 import com.sajad.mytrainingtracker.repository.RoutineRepository
 import com.sajad.mytrainingtracker.repository.TrainingProgramRepository
 import com.sajad.mytrainingtracker.repository.UserRepository
+import com.sajad.mytrainingtracker.viewModel.ExerciseViewModel
+import com.sajad.mytrainingtracker.viewModel.ExerciseViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.RoutineViewModel
 import com.sajad.mytrainingtracker.viewModel.RoutineViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var userViewModel: UserViewModel
     lateinit var trainingProgramViewModel: TrainingProgramViewModel
+    lateinit var routineViewModel: RoutineViewModel
+    lateinit var exerciseViewModel: ExerciseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         val routineRepository = RoutineRepository(AppDatabase.getInstance(this))
         val routineViewModelFactory = RoutineViewModelFactory(application, routineRepository)
-        val routineViewModel = ViewModelProvider(this, routineViewModelFactory)[RoutineViewModel::class.java]
+        routineViewModel = ViewModelProvider(this, routineViewModelFactory)[RoutineViewModel::class.java]
+
+        val exerciseRepository = ExerciseRepository(AppDatabase.getInstance(this))
+        val exerciseViewModelFactory = ExerciseViewModelFactory(application, exerciseRepository)
+        exerciseViewModel = ViewModelProvider(this, exerciseViewModelFactory)[ExerciseViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
