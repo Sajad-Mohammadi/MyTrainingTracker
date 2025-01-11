@@ -112,6 +112,18 @@
         <argument
             android:name="routine"
             app:argType="com.sajad.mytrainingtracker.data.entities.Routine" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_add_exercise"
+            app:destination="@id/navigation_add_exercise" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_exercise"
+        android:name="com.sajad.mytrainingtracker.ui.workout.AddExerciseFragment"
+        android:label="AddExerciseFragment"
+        tools:layout="@layout/fragment_add_exercise">
+        <argument
+            android:name="routineId"
+            app:argType="integer" />
     </fragment>
 
 

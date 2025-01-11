@@ -52,4 +52,5 @@
     <string name="reps">REPS</string>
     <string name="underscore">_</string>
     <string name="edit_routine">Edit Routine</string>
+    <string name="exercise_name">Exercise Name</string>
 </resources>
