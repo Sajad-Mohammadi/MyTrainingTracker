@@ -47,6 +47,17 @@
             app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
             tools:listitem="@layout/item_training_program" />
 
+        <ImageView
+            android:id="@+id/pageImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/astronaut_program"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

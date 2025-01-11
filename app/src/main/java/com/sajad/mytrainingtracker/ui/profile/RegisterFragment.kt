@@ -1,6 +1,7 @@
 package com.sajad.mytrainingtracker.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,12 +64,21 @@ class RegisterFragment : Fragment() {
             !validateInput(binding.etLastname, "Last name is required", lastname) ||
             !validateInput(binding.etEmail, "Email is required", email) ||
             !validateInput(binding.etPassword, "Password is required", password)
-        ) {
-            return
-        }
+        ) return
 
-        userViewModel.registerUser(User(0,firstname, lastname, email, password,true,"en"))
-        Toast.makeText(registerView.context, "User registered successfully", Toast.LENGTH_SHORT).show()
+        userViewModel.registerUser(
+            User(
+                0,
+                firstname,
+                lastname,
+                email,
+                password,
+                true,
+                "en"
+            )
+        )
+        Toast.makeText(registerView.context, "User registered successfully", Toast.LENGTH_SHORT)
+            .show()
         registerView.findNavController().popBackStack(R.id.navigation_profile, false)
     }
 

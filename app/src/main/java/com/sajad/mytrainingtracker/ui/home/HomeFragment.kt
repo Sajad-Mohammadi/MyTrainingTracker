@@ -1,11 +1,13 @@
 package com.sajad.mytrainingtracker.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.TrainingProgramAdapter
@@ -53,15 +55,36 @@ class HomeFragment : Fragment() {
     }
 
     private fun attacheUiListeners() {
-        binding.btnAddProgram.setOnClickListener {
-            TODO()
+        binding.btnAddProgram.setOnClickListener { view ->
+            getCurrentUser { userId ->
+                if (userId == 0) {
+                    view.findNavController().navigate(R.id.navigation_profile)
+                } else {
+                    val bundle = Bundle().apply {
+                        putInt("userId", userId)
+                    }
+                    view.findNavController().navigate(R.id.navigation_add_training_program, bundle)
+                }
+            }
+        }
+    }
+
+    private fun updateUi(hasProgram: Boolean) {
+        if (hasProgram) {
+            binding.pageImage.visibility = View.GONE
+            binding.programRecyclerView.visibility = View.VISIBLE
+        } else {
+            binding.pageImage.visibility = View.VISIBLE
+            binding.programRecyclerView.visibility = View.GONE
         }
     }
 
     private fun setupRecyclerView() {
         trainingProgramAdapter = TrainingProgramAdapter(
-            onBtnEditClick = {
-                TODO()
+            onBtnEditClick = { trainingProgram ->
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationEditTrainingProgram(trainingProgram)
+                view?.findNavController()?.navigate(action)
+
             },
             onBtnGoToProgramClick = {
                 TODO()
@@ -74,27 +97,31 @@ class HomeFragment : Fragment() {
             adapter = trainingProgramAdapter
         }
 
-        activity?.let {
-            trainingProgramViewModel.getTrainingProgramsByUserId(getCurrentUser())
-                .observe(viewLifecycleOwner) { programs ->
-                    if (programs != null) {
-                        trainingProgramAdapter.differ.submitList(programs)
-                    } else
-                        trainingProgramAdapter.differ.submitList(emptyList())
-                }
+        getCurrentUser { userId ->
+            if (userId != 0) {
+                trainingProgramViewModel.getTrainingProgramsByUserId(userId)
+                    .observe(viewLifecycleOwner) { programs ->
+                        if (programs.isNotEmpty()) {
+                            trainingProgramAdapter.differ.submitList(programs)
+                            updateUi(true)
+                        } else {
+                            trainingProgramAdapter.differ.submitList(emptyList())
+                            updateUi(false)
+                        }
+                    }
+            } else {
+                trainingProgramAdapter.differ.submitList(emptyList())
+                updateUi(false)
+            }
         }
     }
 
-    private fun getCurrentUser(): Int {
-        var id: Int = 0
+    private fun getCurrentUser(callback: (Int) -> Unit) {
         activity?.let {
             userViewModel.getLoggedInUser().observe(viewLifecycleOwner) { user ->
-                if (user != null) {
-                    id = user.id
-                }
+                callback(user?.id ?: 0)
             }
         }
-        return id
     }
 
     override fun onDestroyView() {

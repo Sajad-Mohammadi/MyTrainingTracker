@@ -24,4 +24,6 @@
     <string name="go_to_program">Go to program</string>
     <string name="training_programs">Training programs</string>
     <string name="add_program">Add Program</string>
+    <string name="description">Description</string>
+    <string name="weekly_frequency">Weekly frequency</string>
 </resources>
