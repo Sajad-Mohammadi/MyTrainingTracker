@@ -16,11 +16,12 @@
             android:id="@+id/tvGoals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/goals_in_focus"
             android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnAddGoal"
@@ -97,13 +98,14 @@
         <ImageView
             android:id="@+id/pageImage"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="450dp"
             android:src="@drawable/astronaut_program"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

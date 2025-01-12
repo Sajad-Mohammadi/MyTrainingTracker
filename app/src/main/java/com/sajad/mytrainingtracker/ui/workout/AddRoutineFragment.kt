@@ -68,11 +68,13 @@ class AddRoutineFragment : Fragment() {
     private fun validateInput(name: String, description: String): Boolean {
         return when {
             name.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter a routine name", Toast.LENGTH_SHORT).show()
+                binding.etRoutineName.error = "Please enter a name"
+                binding.etRoutineName.requestFocus()
                 false
             }
             description.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter a note", Toast.LENGTH_SHORT).show()
+                binding.etNote.error = "Please enter a description"
+                binding.etNote.requestFocus()
                 false
             }
             else -> true

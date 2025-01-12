@@ -123,6 +123,7 @@ class AddExerciseFragment : Fragment() {
                 set.toInt(),
                 kg.toInt(),
                 rep.toDouble(),
+                1,
                 routineId
             )
         )

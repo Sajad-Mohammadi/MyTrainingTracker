@@ -9,25 +9,45 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="24dp"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:paddingTop="24dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_program_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPath"
+            app:layout_constraintStart_toEndOf="@+id/tvPath"
+            app:layout_constraintTop_toTopOf="@+id/tvPath"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/tvPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/path_workout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTrainingPrograms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="@string/your_programs"
-            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPath"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tvPath" />
 
         <Button
             android:id="@+id/btnAddProgram"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:text="@string/new_program"
             app:layout_constraintEnd_toEndOf="@+id/programRecyclerView"
@@ -50,13 +70,14 @@
         <ImageView
             android:id="@+id/pageImage"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="450dp"
             android:src="@drawable/astronaut_workout"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram" />
+            app:layout_constraintTop_toBottomOf="@+id/btnAddProgram"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

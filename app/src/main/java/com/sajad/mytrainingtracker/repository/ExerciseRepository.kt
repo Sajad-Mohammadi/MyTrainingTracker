@@ -13,4 +13,8 @@ class ExerciseRepository(private val db: AppDatabase) {
     fun getExercisesByRoutineId(routineId: Int): LiveData<List<Exercise>> {
         return db.exerciseDao().getExercisesByRoutineId(routineId)
     }
+
+    fun updateExercisePositions(exercises: List<Exercise>) {
+        db.exerciseDao().updateExercisePositions(exercises)
+    }
 }

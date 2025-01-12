@@ -22,5 +22,12 @@ class ExerciseViewModel(app: Application, private val exerciseRepository: Exerci
         exerciseRepository.delete(exercise)
     }
 
+    fun updateExercises(exercises: List<Exercise>) = viewModelScope.launch {
+        exercises.forEachIndexed { index, exercise ->
+            exerciseRepository.update(exercise.copy(position = index))
+        }
+    }
+
+
     fun getExercisesByRoutineId(routineId: Int) = exerciseRepository.getExercisesByRoutineId(routineId)
 }

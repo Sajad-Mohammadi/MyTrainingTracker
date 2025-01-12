@@ -63,12 +63,12 @@ class RoutineFragment : Fragment() {
         if (hasRoutines) {
             binding.pageImage.visibility = View.GONE
             binding.routineRecyclerView.visibility = View.VISIBLE
-
-            binding.tvRoutines.text = currentTrainingProgram.name
         } else {
             binding.pageImage.visibility = View.VISIBLE
             binding.routineRecyclerView.visibility = View.GONE
         }
+
+        binding.tvRoutines.text = currentTrainingProgram.name
     }
 
     private fun setupRecyclerView() {

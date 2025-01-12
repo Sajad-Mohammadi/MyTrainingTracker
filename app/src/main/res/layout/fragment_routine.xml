@@ -12,22 +12,42 @@
         android:paddingTop="24dp"
         android:elevation="2dp">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_routine_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPath"
+            app:layout_constraintStart_toEndOf="@+id/tvPath"
+            app:layout_constraintTop_toTopOf="@+id/tvPath"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/tvPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/path_routine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvRoutines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/your_programs"
-            android:textSize="24sp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/program_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPath"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tvPath" />
 
         <Button
             android:id="@+id/btnStartFresh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:text="@string/start_fresh"
             app:layout_constraintEnd_toEndOf="@+id/routineRecyclerView"
@@ -50,13 +70,14 @@
         <ImageView
             android:id="@+id/pageImage"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="450dp"
             android:src="@drawable/astronaut_routine"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnStartFresh" />
+            app:layout_constraintTop_toBottomOf="@+id/btnStartFresh"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

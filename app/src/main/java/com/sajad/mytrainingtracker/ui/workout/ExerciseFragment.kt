@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.ExerciseAdapter
@@ -58,9 +59,12 @@ class ExerciseFragment : Fragment() {
 
     private fun setupRecyclerView() {
         exerciseAdapter = ExerciseAdapter(
-            onBtnEditClick = { exerciseId ->
-                TODO("Not yet implemented")
+            onExerciseReordered = { reorderedList ->
+                exerciseViewModel.updateExercises(reorderedList)
             },
+            onBtnEditClick = { exercise ->
+                Log.d("-+-+-+-+-+-", "Edit exercise: $exercise")
+            }
         )
 
         binding.exercisesRecyclerView.apply {
@@ -69,25 +73,26 @@ class ExerciseFragment : Fragment() {
             adapter = exerciseAdapter
         }
 
+        val itemTouchHelper = ItemTouchHelper(exerciseAdapter.itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(binding.exercisesRecyclerView)
+
         exerciseViewModel.getExercisesByRoutineId(currentRoutine.id)
             .observe(viewLifecycleOwner) { exercises ->
-                if (exercises.isNotEmpty()) {
-                    exerciseAdapter.differ.submitList(exercises)
-                    updateUi(true)
-                } else {
-                    updateUi(false)
-                }
+                val sortedExercises = exercises.sortedBy { it.position }
+                exerciseAdapter.differ.submitList(sortedExercises)
+                updateUi(sortedExercises.isNotEmpty())
             }
     }
 
-    private fun updateUi(ex: Boolean) {
-        if (ex) {
+    private fun updateUi(hasExercises: Boolean) {
+        if (hasExercises) {
             binding.pageImage.visibility = View.GONE
             binding.exercisesRecyclerView.visibility = View.VISIBLE
         } else {
             binding.pageImage.visibility = View.VISIBLE
             binding.exercisesRecyclerView.visibility = View.GONE
         }
+        binding.tvRoutineTitle.text = currentRoutine.name
     }
 
     override fun onDestroyView() {

@@ -53,4 +53,7 @@
     <string name="underscore">_</string>
     <string name="edit_routine">Edit Routine</string>
     <string name="exercise_name">Exercise Name</string>
+    <string name="path_workout">\\workput</string>
+    <string name="path_routine">\\workout\\routine</string>
+    <string name="path_exercise">\\workout\\routine\\exercise</string>
 </resources>
