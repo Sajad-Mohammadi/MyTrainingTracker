@@ -60,10 +60,10 @@ class RegisterFragment : Fragment() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
-        if (!validateInput(binding.etFirstname, "First name is required", firstname) ||
-            !validateInput(binding.etLastname, "Last name is required", lastname) ||
-            !validateInput(binding.etEmail, "Email is required", email) ||
-            !validateInput(binding.etPassword, "Password is required", password)
+        if (!validateInput(binding.etFirstname, getString(R.string.first_name_is_required), firstname) ||
+            !validateInput(binding.etLastname, getString(R.string.last_name_is_required), lastname) ||
+            !validateInput(binding.etEmail, getString(R.string.email_is_required), email) ||
+            !validateInput(binding.etPassword, getString(R.string.password_is_required), password)
         ) return
 
         userViewModel.registerUser(
@@ -77,7 +77,8 @@ class RegisterFragment : Fragment() {
                 "en"
             )
         )
-        Toast.makeText(registerView.context, "User registered successfully", Toast.LENGTH_SHORT)
+        Toast.makeText(registerView.context,
+            getString(R.string.user_registered_successfully), Toast.LENGTH_SHORT)
             .show()
         registerView.findNavController().popBackStack(R.id.navigation_profile, false)
     }

@@ -58,18 +58,20 @@ class LoginFragment : Fragment() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
-        if (!validateInput(binding.etEmail,"Email is required", email) ||
-            !validateInput(binding.etPassword,"Password is required", password)) {
+        if (!validateInput(binding.etEmail,getString(R.string.email_is_required), email) ||
+            !validateInput(binding.etPassword, getString(R.string.password_is_required), password)) {
             return
         }
 
 
         userViewModel.login(email, password).observe(viewLifecycleOwner) { user ->
             if (user == null) {
-                Toast.makeText(loginView.context, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(loginView.context,
+                    getString(R.string.invalid_email_or_password), Toast.LENGTH_SHORT).show()
             } else {
                 onLoginSuccess(user)
-                Toast.makeText(loginView.context, "Login successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(loginView.context,
+                    getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                 loginView.findNavController().popBackStack(R.id.navigation_profile, false)
             }
         }

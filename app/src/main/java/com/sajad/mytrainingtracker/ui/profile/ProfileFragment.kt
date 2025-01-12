@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.sajad.mytrainingtracker.MainActivity
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.adapter.UserAdapter
 import com.sajad.mytrainingtracker.databinding.FragmentProfileBinding
 import com.sajad.mytrainingtracker.viewModel.UserViewModel
+import java.util.Locale
 
 class ProfileFragment : Fragment() {
 
@@ -40,6 +43,18 @@ class ProfileFragment : Fragment() {
 
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
+        val mainActivity = activity as? MainActivity
+        val isDarkMode = mainActivity?.loadThemePreference() ?: false
+        binding.themeSwitch.isChecked = isDarkMode
+
+        binding.themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            mainActivity?.toggleTheme(isChecked)
+            mainActivity?.saveThemePreference(isChecked)
+        }
+
+        binding.languageSwitch.setOnClickListener {
+            switchLanguage(it)
+        }
 
         initVars()
         attacheUiListeners()
@@ -110,6 +125,23 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun switchLanguage(view: View) {
+        val currentLocale = requireContext().resources.configuration.locales[0]
+        val newLocale = if (currentLocale.language == "en") "sv" else "en"
+
+        val locale = Locale(newLocale)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        val prefs = requireActivity().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        prefs.edit().putString("app_language", newLocale).apply()
+
+        requireActivity().recreate()
     }
 
 }

@@ -70,7 +70,7 @@ class EditExerciseFragment : Fragment() {
         var rep = binding.etReps.text.toString().trim()
 
         if (exerciseName.isEmpty()) {
-            binding.etExerciseName.error = "Exercise name is required"
+            binding.etExerciseName.error = getString(R.string.exercise_name_is_required)
             binding.etExerciseName.requestFocus()
             return
         }
@@ -80,13 +80,13 @@ class EditExerciseFragment : Fragment() {
             try {
                 sets = set.toInt()
             } catch (e: NumberFormatException) {
-                binding.etSet.error = "Invalid number"
+                binding.etSet.error = getString(R.string.invalid_number)
                 binding.etSet.requestFocus()
                 return
             }
 
             if (sets < 0 || sets > 20) {
-                binding.etSet.error = "Sets must be between 0 and 20"
+                binding.etSet.error = getString(R.string.sets_must_be_between_0_and_20)
                 binding.etSet.requestFocus()
                 return
             }
@@ -98,13 +98,13 @@ class EditExerciseFragment : Fragment() {
             try {
                 kgs = kg.toDouble()
             } catch (e: NumberFormatException) {
-                binding.etKg.error = "Invalid number"
+                binding.etKg.error = getString(R.string.invalid_number)
                 binding.etKg.requestFocus()
                 return
             }
 
             if (kgs < 0 || kgs > 1000) {
-                binding.etKg.error = "Kg must be between 0 and 1000"
+                binding.etKg.error = getString(R.string.kg_must_be_between_0_and_1000)
                 binding.etKg.requestFocus()
                 return
             }
@@ -116,13 +116,13 @@ class EditExerciseFragment : Fragment() {
             try {
                 reps = rep.toInt()
             } catch (e: NumberFormatException) {
-                binding.etReps.error = "Invalid number"
+                binding.etReps.error = getString(R.string.invalid_number)
                 binding.etReps.requestFocus()
                 return
             }
 
             if (reps < 0 || reps > 100) {
-                binding.etReps.error = "Reps must be between 0 and 100"
+                binding.etReps.error = getString(R.string.reps_must_be_between_0_and_100)
                 binding.etReps.requestFocus()
                 return
             }
@@ -141,7 +141,8 @@ class EditExerciseFragment : Fragment() {
                 routineId = currentExercise.routineId
             )
         )
-        Toast.makeText(requireContext(), "Exercise updated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.exercise_updated_successfully), Toast.LENGTH_SHORT).show()
         editView.findNavController().navigateUp()
     }
 

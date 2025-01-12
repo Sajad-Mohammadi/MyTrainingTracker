@@ -59,7 +59,8 @@ class AddRoutineFragment : Fragment() {
 
                 routineViewModel.insertRoutine(newRoutine)
 
-                Toast.makeText(requireContext(), "Routine added successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.routine_added_successfully), Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.popBackStack()
             }
         }
@@ -68,12 +69,12 @@ class AddRoutineFragment : Fragment() {
     private fun validateInput(name: String, description: String): Boolean {
         return when {
             name.isEmpty() -> {
-                binding.etRoutineName.error = "Please enter a name"
+                binding.etRoutineName.error = getString(R.string.please_enter_a_name)
                 binding.etRoutineName.requestFocus()
                 false
             }
             description.isEmpty() -> {
-                binding.etNote.error = "Please enter a description"
+                binding.etNote.error = getString(R.string.please_enter_a_description)
                 binding.etNote.requestFocus()
                 false
             }

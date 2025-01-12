@@ -56,7 +56,8 @@ class EditTrainingProgramFragment : Fragment() {
 
         binding.btnDelete.setOnClickListener {
             trainingProgramViewModel.deleteTrainingProgramById(currentTrainingProgram.id)
-            Toast.makeText(requireContext(), "Training program deleted successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.training_program_deleted_successfully), Toast.LENGTH_SHORT).show()
             editView.findNavController().navigateUp()
         }
     }

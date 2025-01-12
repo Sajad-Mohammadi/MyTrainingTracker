@@ -64,15 +64,17 @@ class EditUserFragment : Fragment() {
         val password = currentUser.password
         val preferredLanguage = currentUser.preferredLanguage
 
-        if (!validateInput(binding.etFirstname, "First name is required", firstname) ||
-            !validateInput(binding.etLastname, "Last name is required", lastname) ||
-            !validateInput(binding.etEmail, "Email is required", email)
+        if (!validateInput(binding.etFirstname,
+                getString(R.string.first_name_is_required), firstname) ||
+            !validateInput(binding.etLastname, getString(R.string.last_name_is_required), lastname) ||
+            !validateInput(binding.etEmail, getString(R.string.email_is_required), email)
         ) {
             return
         }
 
         userViewModel.updateUser(User(userId, firstname, lastname, email, password, true, preferredLanguage))
-        Toast.makeText(requireContext(), "User updated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.user_updated_successfully), Toast.LENGTH_SHORT).show()
         editView.findNavController().popBackStack(R.id.navigation_profile, false)
     }
 

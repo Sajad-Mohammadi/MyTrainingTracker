@@ -81,7 +81,8 @@ class EditRoutineFragment : Fragment() {
                 trainingProgramId = currentRoutine.trainingProgramId
             )
         )
-        Toast.makeText(requireContext(), "Routine updated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.routine_updated_successfully), Toast.LENGTH_SHORT).show()
         editView.findNavController().navigateUp()
     }
 

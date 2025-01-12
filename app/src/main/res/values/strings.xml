@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">MyTrainingTracker</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="false">MyTrainingTracker</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_home">Home</string>
     <string name="title_workout">Workout</string>
     <string name="title_goal">Goal</string>
@@ -37,7 +37,7 @@
     <string name="routine_title">Routine Title</string>
     <string name="note">Note</string>
     <string name="view_routine">View Routine</string>
-    <string name="start_fresh">Start Fresh</string>
+    <string name="start_fresh">New Routine</string>
     <string name="training_program_name_is_required">Training program name is required</string>
     <string name="description_is_required">Description is required</string>
     <string name="duration_is_required">Duration is required</string>
@@ -62,4 +62,27 @@
     <string name="reset_routine">Reset Routine</string>
     <string name="have_an_account_log_in">Have an account? Log in</string>
     <string name="not_implemented_yet">Not Implemented Yet</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="first_name_is_required">First name is required</string>
+    <string name="last_name_is_required">Last name is required</string>
+    <string name="email_is_required">Email is required</string>
+    <string name="user_updated_successfully">User updated successfully</string>
+    <string name="password_is_required">Password is required</string>
+    <string name="invalid_email_or_password">Invalid email or password</string>
+    <string name="login_successful">Login successful</string>
+    <string name="user_registered_successfully">User registered successfully</string>
+    <string name="exercise_name_is_required">Exercise name is required</string>
+    <string name="invalid_number">Invalid number</string>
+    <string name="sets_must_be_between_0_and_20">Sets must be between 0 and 20</string>
+    <string name="kg_must_be_between_0_and_1000">Kg must be between 0 and 1000</string>
+    <string name="reps_must_be_between_0_and_100">Reps must be between 0 and 100</string>
+    <string name="exercise_added_successfully">Exercise added successfully</string>
+    <string name="routine_added_successfully">Routine added successfully</string>
+    <string name="please_enter_a_name">Please enter a name</string>
+    <string name="please_enter_a_description">Please enter a description</string>
+    <string name="training_program_saved_successfully">Training program saved successfully</string>
+    <string name="exercise_updated_successfully">Exercise updated successfully</string>
+    <string name="routine_updated_successfully">Routine updated successfully</string>
+    <string name="training_program_deleted_successfully">Training program deleted successfully</string>
+    <string name="language">\uD83C\uDDF8\uD83C\uDDEA Svenska</string>
 </resources>

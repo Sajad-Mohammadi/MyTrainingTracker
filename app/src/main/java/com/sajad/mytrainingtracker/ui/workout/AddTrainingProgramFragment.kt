@@ -57,19 +57,19 @@ class AddTrainingProgramFragment : Fragment() {
         val programDuration = binding.etDuration.text.toString().trim()
 
         if (programName.isEmpty()) {
-            binding.etTrainingProgramName.error = "Training program name is required"
+            binding.etTrainingProgramName.error = getString(R.string.training_program_name_is_required)
             binding.etTrainingProgramName.requestFocus()
             return
         }
 
         if (programDescription.isEmpty()) {
-            binding.etDescription.error = "Description is required"
+            binding.etDescription.error = getString(R.string.description_is_required)
             binding.etDescription.requestFocus()
             return
         }
 
         if (programDuration.isEmpty()) {
-            binding.etDuration.error = "Duration is required"
+            binding.etDuration.error = getString(R.string.duration_is_required)
             binding.etDuration.requestFocus()
             return
         }
@@ -78,13 +78,13 @@ class AddTrainingProgramFragment : Fragment() {
         try {
             duration = programDuration.toInt()
         } catch (e: NumberFormatException) {
-            binding.etDuration.error = "Please enter a valid duration"
+            binding.etDuration.error = getString(R.string.please_enter_a_valid_duration)
             binding.etDuration.requestFocus()
             return
         }
 
         if (duration < 1 || duration > 7) {
-            binding.etDuration.error = "Duration must be between 1 and 7 days"
+            binding.etDuration.error = getString(R.string.duration_must_be_between_1_and_7_days)
             binding.etDuration.requestFocus()
             return
         }
@@ -100,7 +100,8 @@ class AddTrainingProgramFragment : Fragment() {
                 userId
             )
         )
-        Toast.makeText(addTrainingProgramView.context, "Training program saved successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(addTrainingProgramView.context,
+            getString(R.string.training_program_saved_successfully), Toast.LENGTH_SHORT).show()
         addTrainingProgramView.findNavController().popBackStack()
         addTrainingProgramView.findNavController().navigate(R.id.navigation_workout)
     }

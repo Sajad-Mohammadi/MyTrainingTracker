@@ -2,6 +2,7 @@ package com.sajad.mytrainingtracker
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -21,16 +22,34 @@ import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.UserViewModel
 import com.sajad.mytrainingtracker.viewModel.UserViewModelFactory
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val prefs by lazy { getSharedPreferences("settings", MODE_PRIVATE) }
+
     lateinit var userViewModel: UserViewModel
     lateinit var trainingProgramViewModel: TrainingProgramViewModel
     lateinit var routineViewModel: RoutineViewModel
     lateinit var exerciseViewModel: ExerciseViewModel
 
+    private fun applySavedLanguagePreference() {
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        val language = prefs.getString("app_language", "en")
+        val locale = Locale(language!!)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguagePreference()
         super.onCreate(savedInstanceState)
+        this.requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        toggleTheme(loadThemePreference())
 
         val userRepository = UserRepository(AppDatabase.getInstance(this))
         val userViewModelFactory = UserViewModelFactory(application, userRepository)
@@ -73,6 +92,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         //setupUserViewModel()
+    }
+
+    fun toggleTheme(isDarkMode: Boolean) {
+        val mode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    fun saveThemePreference(isDarkMode: Boolean) {
+        prefs.edit().putBoolean("dark_mode", isDarkMode).apply()
+    }
+
+    fun loadThemePreference(): Boolean {
+        return prefs.getBoolean("dark_mode", false) // Default to light mode
     }
 
     /*private fun setupUserViewModel() {
