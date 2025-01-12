@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -49,13 +51,21 @@ class ExerciseFragment : Fragment() {
         exerciseViewModel = ViewModelProvider(requireActivity())[ExerciseViewModel::class.java]
         currentRoutine = args.routine
 
-//        attachUiListeners()
+        attachUiListeners()
         setupRecyclerView()
     }
 
     private fun attachUiListeners() {
-        TODO("Not yet implemented")
+        binding.btnAddExercise.setOnClickListener {
+            val action =
+                ExerciseFragmentDirections.actionNavigationExerciseToNavigationAddExercise(currentRoutine.id)
+            view?.findNavController()?.navigate(action)
+        }
+        binding.btnInfo.setOnClickListener {
+            Toast.makeText(context, getString(R.string.reorder_exercise_info), Toast.LENGTH_SHORT).show()
+        }
     }
+
 
     private fun setupRecyclerView() {
         exerciseAdapter = ExerciseAdapter(
@@ -63,7 +73,11 @@ class ExerciseFragment : Fragment() {
                 exerciseViewModel.updateExercises(reorderedList)
             },
             onBtnEditClick = { exercise ->
-                Log.d("-+-+-+-+-+-", "Edit exercise: $exercise")
+                val action =
+                    ExerciseFragmentDirections.actionNavigationExerciseToNavigationEditExercise(
+                        exercise
+                    )
+                view?.findNavController()?.navigate(action)
             }
         )
 
@@ -92,7 +106,7 @@ class ExerciseFragment : Fragment() {
             binding.pageImage.visibility = View.VISIBLE
             binding.exercisesRecyclerView.visibility = View.GONE
         }
-        binding.tvRoutineTitle.text = currentRoutine.name
+        binding.tvExercises.text = getString(R.string.exercises_title, currentRoutine.name)
     }
 
     override fun onDestroyView() {

@@ -27,7 +27,10 @@ class ExerciseViewModel(app: Application, private val exerciseRepository: Exerci
             exerciseRepository.update(exercise.copy(position = index))
         }
     }
-
+    fun getMaxPositionAsync(routineId: Int, callback: (Int) -> Unit) = viewModelScope.launch {
+        val maxPosition = exerciseRepository.getMaxPosition(routineId)
+        callback(maxPosition)
+    }
 
     fun getExercisesByRoutineId(routineId: Int) = exerciseRepository.getExercisesByRoutineId(routineId)
 }

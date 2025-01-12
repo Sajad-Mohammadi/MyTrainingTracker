@@ -53,7 +53,11 @@
     <string name="underscore">_</string>
     <string name="edit_routine">Edit Routine</string>
     <string name="exercise_name">Exercise Name</string>
-    <string name="path_workout">\\workput</string>
+    <string name="path_workout">\\workout</string>
     <string name="path_routine">\\workout\\routine</string>
     <string name="path_exercise">\\workout\\routine\\exercise</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="reorder_exercise_info">Reorder exercises easily with drag-and-drop!</string>
+    <string name="exercise_title">Exercise Title</string>
+    <string name="exercises_title">&lt;- %s</string>
 </resources>

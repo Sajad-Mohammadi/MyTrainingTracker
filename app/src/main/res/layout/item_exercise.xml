@@ -4,6 +4,7 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,12 +22,11 @@
 
         <TextView
             android:id="@+id/exerciseTitle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="@string/routine_title"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleSet"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -47,7 +47,7 @@
             app:layout_constraintGuide_begin="30dp" />
 
         <TextView
-            android:id="@+id/tvSet"
+            android:id="@+id/titleSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -57,54 +57,69 @@
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
-            android:id="@+id/tvKg"
+            android:id="@+id/titleKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kg"
-            app:layout_constraintBottom_toBottomOf="@+id/tvSet"
-            app:layout_constraintEnd_toStartOf="@+id/tvReps"
-            app:layout_constraintStart_toEndOf="@+id/tvSet"
-            app:layout_constraintTop_toTopOf="@+id/tvSet" />
+            app:layout_constraintBottom_toBottomOf="@+id/titleSet"
+            app:layout_constraintEnd_toStartOf="@+id/titleReps"
+            app:layout_constraintStart_toEndOf="@+id/titleSet"
+            app:layout_constraintTop_toTopOf="@+id/titleSet" />
+
+        <TextView
+            android:id="@+id/titleReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reps"
+            app:layout_constraintBottom_toBottomOf="@+id/titleKg"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/titleKg" />
+
+        <TextView
+            android:id="@+id/tvSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/underscore"
+            app:layout_constraintEnd_toEndOf="@+id/titleSet"
+            app:layout_constraintStart_toStartOf="@+id/titleSet"
+            app:layout_constraintTop_toBottomOf="@+id/titleSet" />
+
+        <TextView
+            android:id="@+id/tvKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/underscore"
+            app:layout_constraintEnd_toEndOf="@+id/titleKg"
+            app:layout_constraintStart_toStartOf="@+id/titleKg"
+            app:layout_constraintTop_toBottomOf="@+id/titleKg" />
 
         <TextView
             android:id="@+id/tvReps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="@string/reps"
-            app:layout_constraintBottom_toBottomOf="@+id/tvKg"
+            android:layout_marginTop="8dp"
+            android:text="@string/underscore"
+            app:layout_constraintEnd_toEndOf="@+id/titleReps"
+            app:layout_constraintStart_toStartOf="@+id/titleReps"
+            app:layout_constraintTop_toBottomOf="@+id/titleReps" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvKg" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/underscore"
-            app:layout_constraintEnd_toEndOf="@+id/tvSet"
-            app:layout_constraintStart_toStartOf="@+id/tvSet"
-            app:layout_constraintTop_toBottomOf="@+id/tvSet" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/underscore"
-            app:layout_constraintEnd_toEndOf="@+id/tvKg"
-            app:layout_constraintStart_toStartOf="@+id/tvKg"
-            app:layout_constraintTop_toBottomOf="@+id/tvKg" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/underscore"
-            app:layout_constraintEnd_toEndOf="@+id/tvReps"
-            app:layout_constraintStart_toStartOf="@+id/tvReps"
-            app:layout_constraintTop_toBottomOf="@+id/tvReps" />
+            app:srcCompat="@drawable/ic_edit_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

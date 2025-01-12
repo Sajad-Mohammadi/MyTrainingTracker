@@ -1,12 +1,14 @@
 package com.sajad.mytrainingtracker.adapter
 
 import android.annotation.SuppressLint
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.data.entities.Exercise
 import com.sajad.mytrainingtracker.databinding.ItemExerciseBinding
 
@@ -48,7 +50,7 @@ class ExerciseAdapter(
         val currentExercise = differ.currentList[position]
         holder.exerciseBinding.exerciseTitle.text = currentExercise.name
         holder.exerciseBinding.tvSet.text = currentExercise.sets.toString()
-        holder.exerciseBinding.tvKg.text = currentExercise.reps.toString()
+        holder.exerciseBinding.tvKg.text = currentExercise.weight.toString()
         holder.exerciseBinding.tvReps.text = currentExercise.reps.toString()
 
         holder.exerciseBinding.root.setOnClickListener {

@@ -21,6 +21,9 @@ interface ExerciseDao {
     @Delete
     suspend fun delete(exercise: Exercise)
 
+    @Query("SELECT MAX(position) FROM exercise WHERE routineId = :routineId")
+    suspend fun getMaxPosition(routineId: Int): Int
+
     @Update
     fun updateExercisePositions(exercises: List<Exercise>)
 

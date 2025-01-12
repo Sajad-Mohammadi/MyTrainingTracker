@@ -115,6 +115,9 @@
         <action
             android:id="@+id/action_navigation_exercise_to_navigation_add_exercise"
             app:destination="@id/navigation_add_exercise" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_edit_exercise"
+            app:destination="@id/navigation_edit_exercise" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_exercise"
@@ -187,6 +190,15 @@
         <argument
             android:name="user"
             app:argType="com.sajad.mytrainingtracker.data.entities.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_edit_exercise"
+        android:name="com.sajad.mytrainingtracker.ui.workout.EditExerciseFragment"
+        android:label="EditExerciseFragment"
+        tools:layout="@layout/fragment_edit_exercise">
+        <argument
+            android:name="exercise"
+            app:argType="com.sajad.mytrainingtracker.data.entities.Exercise" />
     </fragment>
 
 

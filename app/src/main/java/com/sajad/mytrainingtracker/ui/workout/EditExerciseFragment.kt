@@ -1,5 +1,6 @@
 package com.sajad.mytrainingtracker.ui.workout
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,23 +9,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sajad.mytrainingtracker.R
 import com.sajad.mytrainingtracker.data.entities.Exercise
-import com.sajad.mytrainingtracker.databinding.FragmentAddExerciseBinding
+import com.sajad.mytrainingtracker.databinding.FragmentEditExerciseBinding
 import com.sajad.mytrainingtracker.viewModel.ExerciseViewModel
 
-class AddExerciseFragment : Fragment() {
+class EditExerciseFragment : Fragment() {
 
-    private var _binding: FragmentAddExerciseBinding? = null
+    private var _binding: FragmentEditExerciseBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var exerciseViewModel: ExerciseViewModel
-    private var routineId: Int = 0
+    private lateinit var editView: View
+    private lateinit var currentExercise: Exercise
+
+    private val args: EditExerciseFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            routineId = it.getInt("routineId", 0)
         }
     }
 
@@ -32,7 +36,7 @@ class AddExerciseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddExerciseBinding.inflate(inflater, container, false)
+        _binding = FragmentEditExerciseBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,16 +45,25 @@ class AddExerciseFragment : Fragment() {
 
         exerciseViewModel = ViewModelProvider(requireActivity())[ExerciseViewModel::class.java]
 
-        attachUiListeners()
+        currentExercise = args.exercise
+        editView = view
+
+        attacheUiListeners()
     }
 
-    private fun attachUiListeners() {
+    @SuppressLint("SetTextI18n")
+    private fun attacheUiListeners() {
+        binding.etExerciseName.setText(currentExercise.name)
+        binding.etSet.setText(currentExercise.sets.toString())
+        binding.etKg.setText(currentExercise.weight.toString())
+        binding.etReps.setText(currentExercise.reps.toString())
+
         binding.btnSave.setOnClickListener {
-            saveExercise()
+            updateExercise()
         }
     }
 
-    private fun saveExercise() {
+    private fun updateExercise() {
         val exerciseName = binding.etExerciseName.text.toString().trim()
         var set = binding.etSet.text.toString().trim()
         var kg = binding.etKg.text.toString().trim()
@@ -63,7 +76,7 @@ class AddExerciseFragment : Fragment() {
         }
 
         if (set.isNotEmpty()) {
-            val sets: Int
+            val sets : Int
             try {
                 sets = set.toInt()
             } catch (e: NumberFormatException) {
@@ -78,10 +91,10 @@ class AddExerciseFragment : Fragment() {
                 return
             }
             set = sets.toString()
-        }
+        }else set = "0"
 
         if (kg.isNotEmpty()) {
-            val kgs: Double
+            val kgs : Double
             try {
                 kgs = kg.toDouble()
             } catch (e: NumberFormatException) {
@@ -96,10 +109,10 @@ class AddExerciseFragment : Fragment() {
                 return
             }
             kg = kgs.toString()
-        }
+        } else kg = "0.0"
 
         if (rep.isNotEmpty()) {
-            val reps: Int
+            val reps : Int
             try {
                 reps = rep.toInt()
             } catch (e: NumberFormatException) {
@@ -114,22 +127,25 @@ class AddExerciseFragment : Fragment() {
                 return
             }
             rep = reps.toString()
-        }
+        } else rep = "0"
 
-
-        exerciseViewModel.getMaxPositionAsync(routineId) { lastPosition ->
-            val newExercise = Exercise(
-                id = 0,
+        exerciseViewModel.updateExercise(
+            Exercise(
+                id = currentExercise.id,
                 name = exerciseName,
-                sets = set.toIntOrNull() ?: 0,
-                reps = rep.toIntOrNull() ?: 0,
-                weight = kg.toDoubleOrNull() ?: 0.0,
-                position = lastPosition + 1,
-                routineId = routineId
+                sets = set.toInt(),
+                weight = kg.toDouble(),
+                reps = rep.toInt(),
+                position = currentExercise.position,
+                routineId = currentExercise.routineId
             )
-            exerciseViewModel.insertExercise(newExercise)
-            Toast.makeText(requireContext(), "Exercise added successfully", Toast.LENGTH_SHORT).show()
-            view?.findNavController()?.popBackStack()
-        }
+        )
+        Toast.makeText(requireContext(), "Exercise updated successfully", Toast.LENGTH_SHORT).show()
+        editView.findNavController().navigateUp()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
