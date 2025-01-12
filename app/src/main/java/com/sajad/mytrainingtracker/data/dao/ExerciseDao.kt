@@ -18,6 +18,9 @@ interface ExerciseDao {
     @Update
     suspend fun update(exercise: Exercise)
 
+    @Query("UPDATE exercise SET done = 0 WHERE routineId = :routineId")
+    suspend fun resetDoneStatus(routineId: Int)
+
     @Delete
     suspend fun delete(exercise: Exercise)
 

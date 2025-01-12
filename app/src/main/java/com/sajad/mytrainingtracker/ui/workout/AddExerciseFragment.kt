@@ -125,6 +125,7 @@ class AddExerciseFragment : Fragment() {
                 reps = rep.toIntOrNull() ?: 0,
                 weight = kg.toDoubleOrNull() ?: 0.0,
                 position = lastPosition + 1,
+                done = false,
                 routineId = routineId
             )
             exerciseViewModel.insertExercise(newExercise)

@@ -25,5 +25,6 @@ data class Exercise(
     val reps: Int,
     val weight: Double,
     val position: Int,
+    var done: Boolean,
     val routineId: Int
 ) : Parcelable

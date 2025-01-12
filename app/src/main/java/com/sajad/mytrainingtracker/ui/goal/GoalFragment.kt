@@ -15,32 +15,12 @@ class GoalFragment : Fragment() {
     private var _binding: FragmentGoalBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var userViewModel: UserViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentGoalBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
-
-        userViewModel.getLoggedInUser().observe(viewLifecycleOwner) { user ->
-            user?.let {
-                binding.tvFirstName.text = it.firstname
-            }
-        }
     }
 
     override fun onDestroyView() {

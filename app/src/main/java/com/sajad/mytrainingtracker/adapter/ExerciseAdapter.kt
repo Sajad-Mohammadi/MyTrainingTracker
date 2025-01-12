@@ -14,7 +14,8 @@ import com.sajad.mytrainingtracker.databinding.ItemExerciseBinding
 
 class ExerciseAdapter(
     private val onBtnEditClick: (Exercise) -> Unit,
-    private val onExerciseReordered: (List<Exercise>) -> Unit
+    private val onExerciseReordered: (List<Exercise>) -> Unit,
+    private val onDoneChecked: (Exercise, Boolean) -> Unit
 ) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
     class ExerciseViewHolder(val exerciseBinding: ItemExerciseBinding) :
         RecyclerView.ViewHolder(exerciseBinding.root) {}
@@ -55,6 +56,12 @@ class ExerciseAdapter(
 
         holder.exerciseBinding.root.setOnClickListener {
             onBtnEditClick(currentExercise)
+        }
+
+        holder.exerciseBinding.checkBox.isChecked = currentExercise.done
+        holder.exerciseBinding.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            currentExercise.done = isChecked
+            onDoneChecked(currentExercise, isChecked)
         }
     }
 

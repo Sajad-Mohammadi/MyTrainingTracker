@@ -137,6 +137,7 @@ class EditExerciseFragment : Fragment() {
                 weight = kg.toDouble(),
                 reps = rep.toInt(),
                 position = currentExercise.position,
+                done = false,
                 routineId = currentExercise.routineId
             )
         )

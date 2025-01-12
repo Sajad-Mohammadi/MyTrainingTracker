@@ -64,6 +64,9 @@ class ExerciseFragment : Fragment() {
         binding.btnInfo.setOnClickListener {
             Toast.makeText(context, getString(R.string.reorder_exercise_info), Toast.LENGTH_SHORT).show()
         }
+        binding.btnResetRoutine.setOnClickListener {
+            exerciseViewModel.resetDoneStatus(currentRoutine.id)
+        }
     }
 
 
@@ -78,6 +81,10 @@ class ExerciseFragment : Fragment() {
                         exercise
                     )
                 view?.findNavController()?.navigate(action)
+            },
+            onDoneChecked = { exercise, isChecked ->
+                exercise.done = isChecked
+                exerciseViewModel.updateExercise(exercise)
             }
         )
 

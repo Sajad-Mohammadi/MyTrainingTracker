@@ -32,5 +32,9 @@ class ExerciseViewModel(app: Application, private val exerciseRepository: Exerci
         callback(maxPosition)
     }
 
+    fun resetDoneStatus(routineId: Int) = viewModelScope.launch {
+        exerciseRepository.resetDoneStatus(routineId)
+    }
+
     fun getExercisesByRoutineId(routineId: Int) = exerciseRepository.getExercisesByRoutineId(routineId)
 }
