@@ -81,8 +81,23 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    navController.popBackStack(R.id.navigation_home, false)
+                    navController.popBackStack(R.id.navigation_home, true)
                     navController.navigate(R.id.navigation_home)
+                    true
+                }
+                R.id.navigation_workout -> {
+                    navController.popBackStack(R.id.navigation_workout, true)
+                    navController.navigate(R.id.navigation_workout)
+                    true
+                }
+                R.id.navigation_goal -> {
+                    navController.popBackStack(R.id.navigation_goal, true)
+                    navController.navigate(R.id.navigation_goal)
+                    true
+                }
+                R.id.navigation_profile -> {
+                    navController.popBackStack(R.id.navigation_profile, true)
+                    navController.navigate(R.id.navigation_profile)
                     true
                 }
                 else -> {

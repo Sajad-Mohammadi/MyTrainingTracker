@@ -61,6 +61,13 @@ class EditExerciseFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             updateExercise()
         }
+
+        binding.btnDelete.setOnClickListener {
+            exerciseViewModel.deleteExercise(currentExercise)
+            Toast.makeText(requireContext(),
+                getString(R.string.exercise_deleted_successfully), Toast.LENGTH_SHORT).show()
+            editView.findNavController().navigateUp()
+        }
     }
 
     private fun updateExercise() {

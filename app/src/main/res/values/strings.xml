@@ -25,7 +25,7 @@
     <string name="training_programs">Training programs</string>
     <string name="add_program">Add Program</string>
     <string name="description">Description</string>
-    <string name="weekly_frequency">Weekly frequency</string>
+    <string name="weekly_frequency">Weekly frequency (e.g. 6 days)</string>
     <string name="recent_program">Recent Program</string>
     <string name="goals_in_focus">Goals in Focus</string>
     <string name="new_goal">New Goal</string>
@@ -85,4 +85,8 @@
     <string name="routine_updated_successfully">Routine updated successfully</string>
     <string name="training_program_deleted_successfully">Training program deleted successfully</string>
     <string name="language">\uD83C\uDDF8\uD83C\uDDEA Svenska</string>
+    <string name="program_name_e_g_advanced_full_body">Program Name (e.g. Advanced Full-Body)</string>
+    <string name="routine_name_e_g_legs">Routine Name (e.g. Legs)</string>
+    <string name="exercise_name_e_g_squat">Exercise Name (e.g. Squat)</string>
+    <string name="exercise_deleted_successfully">Exercise deleted successfully</string>
 </resources>

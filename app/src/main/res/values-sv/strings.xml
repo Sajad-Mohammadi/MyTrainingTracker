@@ -84,4 +84,8 @@
     <string name="routine_updated_successfully">Rutin uppdaterades</string>
     <string name="training_program_deleted_successfully">Träningsprogram borttaget</string>
     <string name="language">\uD83C\uDDEC\uD83C\uDDE7 English</string>
+    <string name="program_name_e_g_advanced_full_body">Programnamn (t.ex. Avancerat Helkroppsprogram)</string>
+    <string name="routine_name_e_g_legs">Routinens namn (t.ex. Ben)</string>
+    <string name="exercise_name_e_g_squat">Övningens namn (t.ex. Knäböj)</string>
+    <string name="exercise_deleted_successfully">Övningen har tagits bort</string>
 </resources>
