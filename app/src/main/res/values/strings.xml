@@ -89,4 +89,22 @@
     <string name="routine_name_e_g_legs">Routine Name (e.g. Legs)</string>
     <string name="exercise_name_e_g_squat">Exercise Name (e.g. Squat)</string>
     <string name="exercise_deleted_successfully">Exercise deleted successfully</string>
+    <string name="set_your_goals_and_start_your_journey_to_success">Set your goals and start your journey to success!</string>
+    <string name="goal_description">Goal descripion</string>
+    <string name="please_select_valid_priority_and_status">Please select valid Priority and Status</string>
+    <string name="goal_added_successfully">Goal added successfully</string>
+    <string name="goal_updated_successfully">Goal updated successfully!</string>
+    <string name="goal_deleted">Goal deleted!</string>
+    <string-array name="goal_priority">
+        <item>Priority</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+    <string-array name="goal_status">
+        <item>Status</item>
+        <item>Planned</item>
+        <item>In progress</item>
+        <item>Completed</item>
+    </string-array>
 </resources>

@@ -11,11 +11,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sajad.mytrainingtracker.data.database.AppDatabase
 import com.sajad.mytrainingtracker.databinding.ActivityMainBinding
 import com.sajad.mytrainingtracker.repository.ExerciseRepository
+import com.sajad.mytrainingtracker.repository.GoalRepository
 import com.sajad.mytrainingtracker.repository.RoutineRepository
 import com.sajad.mytrainingtracker.repository.TrainingProgramRepository
 import com.sajad.mytrainingtracker.repository.UserRepository
 import com.sajad.mytrainingtracker.viewModel.ExerciseViewModel
 import com.sajad.mytrainingtracker.viewModel.ExerciseViewModelFactory
+import com.sajad.mytrainingtracker.viewModel.GoalViewModel
+import com.sajad.mytrainingtracker.viewModel.GoalViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.RoutineViewModel
 import com.sajad.mytrainingtracker.viewModel.RoutineViewModelFactory
 import com.sajad.mytrainingtracker.viewModel.TrainingProgramViewModel
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var trainingProgramViewModel: TrainingProgramViewModel
     lateinit var routineViewModel: RoutineViewModel
     lateinit var exerciseViewModel: ExerciseViewModel
+    lateinit var goalViewModel: GoalViewModel
 
     private fun applySavedLanguagePreference() {
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
@@ -71,6 +75,10 @@ class MainActivity : AppCompatActivity() {
         val exerciseViewModelFactory = ExerciseViewModelFactory(application, exerciseRepository)
         exerciseViewModel = ViewModelProvider(this, exerciseViewModelFactory)[ExerciseViewModel::class.java]
 
+        val goalRepository = GoalRepository(AppDatabase.getInstance(this))
+        val goalViewModelFactory = GoalViewModelFactory(application, goalRepository)
+        goalViewModel = ViewModelProvider(this, goalViewModelFactory)[GoalViewModel::class.java]
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -81,22 +89,22 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    navController.popBackStack(R.id.navigation_home, true)
+                    navController.popBackStack(R.id.navigation_home, false)
                     navController.navigate(R.id.navigation_home)
                     true
                 }
                 R.id.navigation_workout -> {
-                    navController.popBackStack(R.id.navigation_workout, true)
+                    navController.popBackStack(R.id.navigation_workout, false)
                     navController.navigate(R.id.navigation_workout)
                     true
                 }
                 R.id.navigation_goal -> {
-                    navController.popBackStack(R.id.navigation_goal, true)
+                    navController.popBackStack(R.id.navigation_goal, false)
                     navController.navigate(R.id.navigation_goal)
                     true
                 }
                 R.id.navigation_profile -> {
-                    navController.popBackStack(R.id.navigation_profile, true)
+                    navController.popBackStack(R.id.navigation_profile, false)
                     navController.navigate(R.id.navigation_profile)
                     true
                 }

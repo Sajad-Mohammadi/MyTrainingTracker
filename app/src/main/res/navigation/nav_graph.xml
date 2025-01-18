@@ -138,7 +138,32 @@
         android:id="@+id/navigation_goal"
         android:name="com.sajad.mytrainingtracker.ui.goal.GoalFragment"
         android:label="fragment_goal"
-        tools:layout="@layout/fragment_goal" />
+        tools:layout="@layout/fragment_goal" >
+        <action
+            android:id="@+id/action_navigation_goal_to_navigation_add_goal"
+            app:destination="@id/navigation_add_goal" />
+        <action
+            android:id="@+id/action_navigation_goal_to_editGoalFragment"
+            app:destination="@id/editGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_goal"
+        android:name="com.sajad.mytrainingtracker.ui.goal.AddGoalFragment"
+        android:label="AddGoalFragment"
+        tools:layout="@layout/fragment_add_goal">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editGoalFragment"
+        android:name="com.sajad.mytrainingtracker.ui.goal.EditGoalFragment"
+        android:label="EditGoalFragment"
+        tools:layout="@layout/fragment_edit_goal">
+        <argument
+            android:name="goal"
+            app:argType="com.sajad.mytrainingtracker.data.entities.Goal" />
+    </fragment>
 
 
 
