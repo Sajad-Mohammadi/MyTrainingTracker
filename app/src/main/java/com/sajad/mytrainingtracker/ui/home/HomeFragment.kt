@@ -34,6 +34,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var userViewModel: UserViewModel
 
+    private var hasProgram: Boolean = false
+    private var hasGoal: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -88,15 +91,24 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun updateUi(hasProgram: Boolean) {
-        if (hasProgram) {
-            binding.pageImage.visibility = View.GONE
+    private fun updateUi(p: Boolean) {
+        if (p) {
+            hasProgram = true
             binding.programRecyclerView.visibility = View.VISIBLE
             binding.tvNoPrograms.visibility = View.GONE
         } else {
-            binding.pageImage.visibility = View.VISIBLE
+            hasProgram = false
             binding.programRecyclerView.visibility = View.GONE
             binding.tvNoPrograms.visibility = View.VISIBLE
+        }
+        updatePageImageVisibility()
+    }
+
+    private fun updatePageImageVisibility() {
+        if (hasProgram || hasGoal) {
+            binding.pageImage.visibility = View.GONE
+        } else {
+            binding.pageImage.visibility = View.VISIBLE
         }
     }
 
@@ -183,11 +195,11 @@ class HomeFragment : Fragment() {
                         goalAdapter.differ.submitList(displayGoals)
                         binding.goalRecyclerView.visibility = View.VISIBLE
                         binding.tvNoGoals.visibility = View.GONE
-                        binding.pageImage.visibility = View.GONE
+                        hasGoal = true
                     } else {
                         binding.goalRecyclerView.visibility = View.GONE
                         binding.tvNoGoals.visibility = View.VISIBLE
-                        binding.pageImage.visibility = View.VISIBLE
+                        hasGoal = false
                     }
                 }
             } else {
@@ -195,6 +207,7 @@ class HomeFragment : Fragment() {
                 binding.tvNoGoals.visibility = View.VISIBLE
                 binding.pageImage.visibility = View.VISIBLE
             }
+            updatePageImageVisibility()
         }
     }
 
