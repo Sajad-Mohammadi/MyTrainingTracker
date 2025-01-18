@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_routine"
             app:destination="@id/navigation_routine" />
+        <action
+            android:id="@+id/action_navigation_home_to_editGoalFragment"
+            app:destination="@id/navigation_edit_goal" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_add_goal"
+            app:destination="@id/navigation_add_goal" />
     </fragment>
 
 
@@ -144,7 +150,7 @@
             app:destination="@id/navigation_add_goal" />
         <action
             android:id="@+id/action_navigation_goal_to_editGoalFragment"
-            app:destination="@id/editGoalFragment" />
+            app:destination="@id/navigation_edit_goal" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_goal"
@@ -156,7 +162,7 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/editGoalFragment"
+        android:id="@+id/navigation_edit_goal"
         android:name="com.sajad.mytrainingtracker.ui.goal.EditGoalFragment"
         android:label="EditGoalFragment"
         tools:layout="@layout/fragment_edit_goal">
