@@ -106,6 +106,12 @@ class AddGoalFragment : Fragment() {
             Toast.makeText(requireContext(),
                 getString(R.string.goal_added_successfully), Toast.LENGTH_SHORT).show()
             view?.findNavController()?.popBackStack()
+            view?.findNavController()?.navigate(R.id.navigation_goal)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

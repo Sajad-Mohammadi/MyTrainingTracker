@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    navController.popBackStack(R.id.navigation_home, false)
+                    navController.popBackStack(R.id.navigation_home, true)
                     navController.navigate(R.id.navigation_home)
                     true
                 }
